@@ -7,10 +7,10 @@ function InputBox(props) {
     const [priority, setPriority] = useState('Medium'); 
 
     const handleAddTask = (e) => {
-        if (e.keyCode === 13) { 
-            props.addNew(value, dueDate);
-            setDueDate(''); 
-            setPriority('Medium');
+        if (e.keyCode === 13 && value.trim() !== '') {  
+            props.addNew(value, dueDate, priority); 
+            setDueDate('');  
+            setPriority('Medium');  
         }
     };
 

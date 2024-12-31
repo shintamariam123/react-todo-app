@@ -1,10 +1,12 @@
 import React from 'react';
 
-function Sort({ sortOption, setSortOption }) {
+function Sort({ sortOption, setSortOption,onSort }) {
     const handleSortChange = (e) => {
         setSortOption(e.target.value);
     };
-
+    const handleSortClick = () => {
+        onSort(); 
+    };
     return (
         <div className="sort-dropdown">
             <label htmlFor="sort-tasks">Sort by:</label>
@@ -19,6 +21,7 @@ function Sort({ sortOption, setSortOption }) {
                 <option value="dueDateDesc">Due Date (Descending)</option>
                 <option value="priority">Priority (High > Medium > Low)</option>
             </select>
+            <button onClick={handleSortClick} className="btn btn-primary">Sort</button>
         </div>
     );
 }

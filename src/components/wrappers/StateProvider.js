@@ -18,22 +18,9 @@ class StateProvider extends Component {
 
     render() {
 
-        
-         const sortedList = [...this.state.list].sort((a, b) => {
-            const { sortOption } = this.state;
-            if (sortOption === 'dueDateAsc') {
-                return new Date(a.dueDate) - new Date(b.dueDate);
-            } else if (sortOption === 'dueDateDesc') {
-                return new Date(b.dueDate) - new Date(a.dueDate);
-            } else if (sortOption === 'priority') {
-                const priorityOrder = { High: 1, Medium: 2, Low: 3 };
-                return priorityOrder[a.priority] - priorityOrder[b.priority];
-            }
-            return 0; 
-        });
-
+    
            const children = wrapChildrenWith(this.props.children, {
-            data: { ...this.state, list: sortedList },
+            data: { ...this.state, },
             actions: objectWithOnly(this, [
                 'addNew',
                 'changeFilter',
@@ -48,9 +35,10 @@ class StateProvider extends Component {
     }
 
     addNew(text, dueDate = '', priority = 'Medium') {
-        let updatedList = addToList(this.state.list, { text, completed: false, dueDate,priority });
+        let updatedList = addToList(this.state.list, { text, completed: false, dueDate, priority });
         this.setState({ list: updatedList });
     }
+    
     
 
     changeFilter(filter) {
